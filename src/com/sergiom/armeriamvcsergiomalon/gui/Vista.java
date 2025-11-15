@@ -1,27 +1,37 @@
 package com.sergiom.armeriamvcsergiomalon.gui;
 
+import com.github.lgooddatepicker.components.DatePicker;
 import com.sergiom.armeriamvcsergiomalon.base.Armas;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class Vista {
+    private static final String[] modelos = {"Ropera", "Ballesta", "Arcabuz", "Onagro", "Claymore", "Alabarda", "Bombarda", "Estilete"};
     private JPanel panel1;
-    private JRadioButton radioButtonArmaADistancia;
-    private JRadioButton radioButtonCuerpoACuerpo;
-    private JTextField textFieldNombre;
-    private JTextField textFieldLugar;
-    private JTextField textFieldFabricante;
-    private JTextField textFieldMaterial;
-    private JTextField textFieldPrecio;
-    private JCheckBox checkBoxPolvora;
-    private JComboBox comboBoxModelo;
-    private JLabel alcanceLongitud;
-    private JLabel usaPolvoraUnFilo;
-    private JLabel municionEstilo;
-    private JList<Armas> list1;
-    JFrame frame;
-
+    JRadioButton radioButtonArmaADistancia;
+    JRadioButton radioButtonCuerpoACuerpo;
+    JTextField textFieldNombre;
+    JTextField textFieldLugar;
+    JTextField textFieldFabricante;
+    JTextField textFieldMaterial;
+    JTextField textFieldPrecio;
+    JCheckBox checkBoxPolvoraFilo;
+    JComboBox comboBoxModelo;
+    JLabel alcanceLongitud;
+    JLabel usaPolvoraUnFilo;
+    JLabel municionEstiloLbl;
+    JList<Armas> list1;
+    DatePicker fechaFabricacionDP;
+    JTextField municionEstiloTxt;
+    JTextField longAlcanceTxt;
+     JButton nuevoBtn;
+     JButton borrarBtn;
+     JTextArea descripcionTxt;
+    private JFrame frame;
+    JTextField[] listaCamposTexto = {textFieldNombre, textFieldLugar, textFieldFabricante, textFieldMaterial,
+            textFieldPrecio, municionEstiloTxt, longAlcanceTxt};
+    DefaultComboBoxModel<String> dcbModelos;
     DefaultListModel<Armas> dlmArmas;
 
     public Vista() {
@@ -33,9 +43,15 @@ public class Vista {
         frame.setVisible(true);
     }
 
-    public void initComponents(){
+    public void initComponents() {
         dlmArmas = new DefaultListModel<>();
+        dcbModelos = new DefaultComboBoxModel<>();
         list1.setModel(dlmArmas);
+        for (int i = 0; i < modelos.length; i++) {
+            dcbModelos.addElement(modelos[i]);
+        }
+        comboBoxModelo.setModel(dcbModelos);
     }
+
 
 }

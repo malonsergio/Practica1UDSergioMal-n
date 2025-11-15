@@ -3,7 +3,6 @@ package com.sergiom.armeriamvcsergiomalon.base;
 import java.time.LocalDate;
 
 public class Armas {
-    private static final String[] modelos = {"Ropera", "Ballesta", "Arcabuz", "Onagro", "Claymore", "Alabarda", "Bombarda", "Estilete"};
 
 
     private String nombre;
@@ -15,7 +14,8 @@ public class Armas {
     private LocalDate fechaFabricacion;
     private String descripcion;
 
-    public Armas(){}
+    public Armas() {
+    }
 
     public Armas(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
                  String materiales, double precioEnEscudos, LocalDate fechaFabricacion, String descripcion) {
@@ -37,9 +37,6 @@ public class Armas {
         this.descripcion = descripcion;
     }
 
-    public static String[] getModelos() {
-        return modelos;
-    }
 
     public String getNombre() {
         return nombre;
@@ -98,7 +95,7 @@ public class Armas {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre del arma: " + this.nombre);
         sb.append(", Modelo del arma: " + this.modelo);

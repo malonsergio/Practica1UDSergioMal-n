@@ -3,6 +3,9 @@ package com.sergiom.armeriamvcsergiomalon.base;
 import java.time.LocalDate;
 
 public class ArmaADistancia extends Armas {
+    private static final String[] modelosTradicionales = { "Ballesta", "Onagro","Arco","Honda"};
+    private static final String[] modelosPolvora = {"Arcabuz" ,"Bombarda","Mosquete","Culebrina"};
+
     int municion;
     double alcanceEfectivo;
     boolean usaPolvora;
@@ -39,15 +42,24 @@ public class ArmaADistancia extends Armas {
         return usaPolvora;
     }
 
+    public boolean isUsaPolvora(String modelo){
+        for(int i = 0; i< modelosPolvora.length;i++){
+            if(modelosPolvora[i].equalsIgnoreCase(modelo)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setUsaPolvora(boolean usaPolvora) {
         this.usaPolvora = usaPolvora;
     }
 
-    public void setUsaPolvora(String texto) {
-        if (texto.equals("Arma de fuego")) {
+    public void setUsaPolvora(String textoXML) {
+        if (textoXML.equals("Arma de fuego")) {
             usaPolvora = true;
 
-        } else if (texto.equals("Arma tradicional")) {
+        } else if (textoXML.equals("Arma tradicional")) {
             usaPolvora = false;
         }
     }

@@ -3,6 +3,9 @@ package com.sergiom.armeriamvcsergiomalon.base;
 import java.time.LocalDate;
 
 public class ArmaCuerpoACuerpo extends Armas {
+    private static final String[] modelosUnfilo = {"Alabarda", "Alfanje", "Cimitarra","Sable","Maza","Hacha"};
+    private static final String[] modelosDosFilos = {"Claymore", "Estilete","Gladius", "Spatha", "Estoque","Macuahuitl"};
+
     boolean unFilo;
     double longitudFilo;
     int estiloDeUso;
@@ -22,6 +25,14 @@ public class ArmaCuerpoACuerpo extends Armas {
 
     public boolean isUnFilo() {
         return unFilo;
+    }
+    public boolean isUnFilo(String modelo){
+        for(int i = 0; i<modelosUnfilo.length;i++){
+            if(modelosUnfilo[i].equalsIgnoreCase(modelo)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setUnFilo(boolean unFilo) {
