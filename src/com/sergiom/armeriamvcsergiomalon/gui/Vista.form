@@ -136,7 +136,7 @@
           <text value="Descripción/Comentarios"/>
         </properties>
       </component>
-      <component id="a5b9c" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="a5b9c" class="javax.swing.JTextField" binding="textFieldNombre">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -145,7 +145,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="5c904" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="5c904" class="javax.swing.JTextField" binding="textFieldLugar">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -154,7 +154,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="8e751" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="8e751" class="javax.swing.JTextField" binding="textFieldFabricante">
         <constraints>
           <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -163,7 +163,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="43e17" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="43e17" class="javax.swing.JTextField" binding="textFieldMaterial">
         <constraints>
           <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -172,7 +172,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="2cd4b" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+      <component id="2cd4b" class="javax.swing.JTextField" binding="textFieldPrecio">
         <constraints>
           <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -215,7 +215,7 @@
           <text value="Usa pólvora"/>
         </properties>
       </component>
-      <component id="4b7ce" class="javax.swing.JCheckBox" binding="checkBox1" default-binding="true">
+      <component id="4b7ce" class="javax.swing.JCheckBox" binding="checkBoxPolvora">
         <constraints>
           <grid row="20" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <forms top="0" left="5" bottom="0" right="0" defaultalign-horz="false"/>
@@ -224,7 +224,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="3488b" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="3488b" class="javax.swing.JComboBox" binding="comboBoxModelo">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>

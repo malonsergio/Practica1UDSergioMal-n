@@ -15,6 +15,20 @@ public class Armas {
     private LocalDate fechaFabricacion;
     private String descripcion;
 
+    public Armas(){}
+
+    public Armas(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
+                 String materiales, double precioEnEscudos, LocalDate fechaFabricacion, String descripcion) {
+        this.nombre = nombre;
+        this.modelo = modelo;
+        this.lugarDeFabricacion = lugarDeFabricacion;
+        this.nombreFabricante = nombreFabricante;
+        this.materiales = materiales;
+        this.precioEnEscudos = precioEnEscudos;
+        this.fechaFabricacion = fechaFabricacion;
+        this.descripcion = descripcion;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

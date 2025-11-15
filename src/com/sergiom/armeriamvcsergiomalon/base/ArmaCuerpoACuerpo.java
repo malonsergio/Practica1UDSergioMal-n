@@ -1,9 +1,24 @@
 package com.sergiom.armeriamvcsergiomalon.base;
 
+import java.time.LocalDate;
+
 public class ArmaCuerpoACuerpo extends Armas {
     boolean unFilo;
     double longitudFilo;
     int estiloDeUso;
+
+
+    public ArmaCuerpoACuerpo(){}
+
+    public ArmaCuerpoACuerpo(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
+                             String materiales, double precioEnEscudos,
+                             LocalDate fechaFabricacion, String descripcion,
+                             boolean unFilo, double longitudFilo, int estiloDeUso) {
+        super(nombre, modelo, lugarDeFabricacion, nombreFabricante, materiales, precioEnEscudos, fechaFabricacion, descripcion);
+        this.unFilo = unFilo;
+        this.longitudFilo = longitudFilo;
+        this.estiloDeUso = estiloDeUso;
+    }
 
     public boolean isUnFilo() {
         return unFilo;
@@ -11,6 +26,14 @@ public class ArmaCuerpoACuerpo extends Armas {
 
     public void setUnFilo(boolean unFilo) {
         this.unFilo = unFilo;
+    }
+
+    public void setUnFilo(String filos){
+        if (filos.equals("Un solo filo")){
+            unFilo = true;
+        } else if (filos.equals("Dos filos")){
+            unFilo = false;
+        }
     }
 
     public double getLongitudFilo() {
