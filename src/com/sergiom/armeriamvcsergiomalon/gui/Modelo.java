@@ -64,7 +64,6 @@ public class Modelo {
             ArmaADistancia armaADistancia = new ArmaADistancia(nombre, modelo, lugarDeFabricacion, nombreFabricante,
                     materiales, precioEnEscudos, fechaFabricacion, municion, alcanceEfectivo, usaPolvora);
             listaArmas.add(armaADistancia);
-            System.out.println("Añadido");
             return true;
         }
 
@@ -86,7 +85,6 @@ public class Modelo {
         Element hijo = null;
         Element datoHijo = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        System.out.println("ESTAMOS DENTRO DEL METODO PARA EXPORTAR");
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             dom = db.newDocument();

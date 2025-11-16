@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ArmeriaMVCSergioMalon:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ArmeriaMVCSergioMalon_jar</output-path>
+    <root id="archive" name="ArmeriaMVCSergioMalon.jar">
+      <element id="module-output" name="ArmeriaMVCSergioMalon" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-forms-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+    </root>
+  </artifact>
+</component>

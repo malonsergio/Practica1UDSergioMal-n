@@ -46,18 +46,7 @@ public class ArmaADistancia extends Armas {
         return usaPolvora ? "Si" : "No";
     }
 
-    public boolean isUsaPolvora(String modelo) {
-        for (int i = 0; i < modelosPolvora.length; i++) {
-            if (modelosPolvora[i].equalsIgnoreCase(modelo)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public void setUsaPolvora(boolean usaPolvora) {
-        this.usaPolvora = usaPolvora;
-    }
 
     public void setUsaPolvora(String textoXML) {
         if (textoXML.equals("Arma de fuego")) {

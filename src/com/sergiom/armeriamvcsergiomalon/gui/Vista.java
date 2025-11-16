@@ -49,10 +49,11 @@ public class Vista {
 
     public Vista() {
         frame = new JFrame("ArmeriaMVC");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/icono.png"));
+        frame.setIconImage(icon.getImage());
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("img/icono.png");
-        frame.setIconImage(img.getImage());
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         frame.pack();
         frame.setVisible(true);
         llenarModelos();

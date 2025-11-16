@@ -4,6 +4,7 @@ import com.sergiom.armeriamvcsergiomalon.base.ArmaADistancia;
 import com.sergiom.armeriamvcsergiomalon.base.ArmaCuerpoACuerpo;
 import com.sergiom.armeriamvcsergiomalon.base.Armas;
 import com.sergiom.armeriamvcsergiomalon.utils.Utils;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,10 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -87,7 +85,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
     public void refresh() {
         vista.dlmArmas.clear();
         for (Armas a : modelo.getListaArmas()) {
-            System.out.println(a);
             vista.dlmArmas.addElement(a);
         }
     }
@@ -107,14 +104,24 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
         ultimoPath = new File(configuracion.getProperty("ultimaRutaExportada"));
     }
 
-    private void actualizarDatosConfiguracion(File ultimaRutaExportada) {
-        this.ultimoPath = ultimaRutaExportada;
-    }
 
-    private void guardarConfiguracion() throws IOException {
-        Properties configuracion = new Properties();
-        configuracion.setProperty("ultimaRutaExportada", ultimoPath.getAbsolutePath());
-        configuracion.store(new PrintWriter("armas.conf"), "Datos configuracion arma");
+
+    private void guardarConfiguracion() {
+        try {
+            Properties configuracion = new Properties();
+            configuracion.setProperty("ultimaRutaExportada", ultimoPath.getAbsolutePath());
+
+            String userHome = System.getProperty("user.home");
+            File configFile = new File(userHome, "armas.conf");
+
+            try (FileWriter writer = new FileWriter(configFile)) {
+                configuracion.store(writer, "Datos configuracion arma");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void addActionListener(ActionListener listener) {
@@ -132,7 +139,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
     public void actionPerformed(ActionEvent actionEvent) {
         String command = actionEvent.getActionCommand();
         int respuesta;
-        System.out.println(command);
         switch (command) {
             case "Nuevo":
 
@@ -142,7 +148,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
 
                 }
                 try {
-                    System.out.println("paso el check");
                     if (vista.radioButtonCuerpoACuerpo.isSelected()) {
                         if (camposVaciosCaC()) {
                             break;
@@ -151,7 +156,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                                 , vista.textFieldLugar.getText(), vista.textFieldFabricante.getText(), vista.textFieldMaterial.getText(),
                                 Double.parseDouble(vista.textFieldPrecio.getText()), vista.fechaFabricacionDP.getDate(), vista.checkBoxPolvoraFilo.isSelected() ? true : false,
                                 Double.parseDouble(vista.longAlcanceTxt.getText()), String.valueOf(vista.dcbEstilos.getSelectedItem()));
-                        System.out.println("creado");
 
                     } else if (vista.radioButtonArmaADistancia.isSelected()) {
                         if (camposVaciosADistancia()) {
@@ -161,7 +165,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                                 , vista.textFieldLugar.getText(), vista.textFieldFabricante.getText(), vista.textFieldMaterial.getText(),
                                 Double.parseDouble(vista.textFieldPrecio.getText()), vista.fechaFabricacionDP.getDate(), Integer.parseInt(vista.municionTxt.getText()),
                                 Double.parseDouble(vista.longAlcanceTxt.getText()), vista.checkBoxPolvoraFilo.isSelected());
-                        System.out.println("creado");
 
                     }
                 } catch (NumberFormatException e) {
@@ -180,7 +183,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 }
                 break;
             case "Sobreescribir":
-                System.out.println("Estamo sobreescribiendo");
                 try {
                     Armas aCambiar = modelo.buscarArma(vista.textFieldNombre.getText());
                     respuesta = Utils.mensajeConfirmacion("Confirma que quieres sobrescribir datos", "¿Estás seguro?");
@@ -201,8 +203,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
 
                         refresh();
                         vista.sobreescribirTxt.setEnabled(false);
-                    } else {
-                        Utils.mensajeError("No hay ningun arma registrada a ese nombre");
                     }
                 } catch (NumberFormatException e) {
                     Utils.mensajeError("Por favor, introduce números válidos en los campos correspondientes");
@@ -219,7 +219,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 vista.usaPolvoraDosFilos.setText("Usa pólvora");
                 break;
             case "Cuerpo a Cuerpo":
-
                 vista.llenarModelosCuerpoACuerpo();
                 vista.mostrarComboEstilos();
                 accionComboBoxCaC();
@@ -230,16 +229,13 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
             case "Exportar":
                 JFileChooser selectorFichero2 = Utils.crearSelectorFichero(ultimoPath,
                         "Archivos XML", "xml");
-                System.out.println("ESTAMOS EXPORTANDO");
                 int opc2 = selectorFichero2.showSaveDialog(null);
-                System.out.println("Seguimos EXPORTANDO");
                 if (opc2 == JFileChooser.APPROVE_OPTION) {
                     File archivo = selectorFichero2.getSelectedFile();
                     if (!archivo.getName().toLowerCase().endsWith(".xml")) {
                         archivo = new File(archivo.getParentFile(), archivo.getName() + ".xml");
                     }
                     modelo.exportarXML(archivo);
-                    System.out.println("SE SUPONE QUE HEMOS EXPORTADO");
                 }
                 break;
             case "Importar":
@@ -264,10 +260,8 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 if (vista.comboBoxModelo.getSelectedItem() == null) {
                     return;
                 }
-                System.out.println("Pasamos el check del Combo");
 
                 if (Arrays.toString(ArmaADistancia.modelosPolvora).contains(vista.comboBoxModelo.getSelectedItem().toString())) {
-                    System.out.println("Es de polvora");
                     vista.checkBoxPolvoraFilo.setSelected(true);
                 } else {
                     vista.checkBoxPolvoraFilo.setSelected(false);
@@ -292,7 +286,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 }
                 if (Arrays.toString(ArmaCuerpoACuerpo.modelosDosFilos).contains(vista.comboBoxModelo.getSelectedItem().toString())) {
                     vista.checkBoxPolvoraFilo.setSelected(true);
-                    System.out.println("Es de dos filo");
                 } else {
                     vista.checkBoxPolvoraFilo.setSelected(false);
                 }
@@ -309,15 +302,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
     @Override
     public void windowClosing(WindowEvent windowEvent) {
         int respuesta = Utils.mensajeConfirmacion("¿Desea cerrar ventana?", "Salir");
-        if (respuesta == JOptionPane.OK_OPTION) {
-            try {
-                guardarConfiguracion();
-                System.exit(0);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            guardarConfiguracion();
+            System.exit(0);
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }

@@ -14,15 +14,6 @@ public class ArmaCuerpoACuerpo extends Armas {
     public ArmaCuerpoACuerpo() {
     }
 
-    public ArmaCuerpoACuerpo(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
-                             String materiales, double precioEnEscudos,
-                             LocalDate fechaFabricacion,
-                             boolean dosFilos, double longitudFilo, int estiloDeUso) {
-        super(nombre, modelo, lugarDeFabricacion, nombreFabricante, materiales, precioEnEscudos, fechaFabricacion);
-        this.dosFilos = dosFilos;
-        this.longitudFilo = longitudFilo;
-        this.estiloDeUso = estiloDeUso;
-    }
 
     public ArmaCuerpoACuerpo(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
                              String materiales, double precioEnEscudos,
@@ -38,9 +29,6 @@ public class ArmaCuerpoACuerpo extends Armas {
         return dosFilos;
     }
 
-    public void setDosFilos(boolean dosFilos) {
-        this.dosFilos = dosFilos;
-    }
 
     public void setDosFilosTexto(String filos) {
         if (filos.equals("Dos filos")) {
@@ -76,9 +64,7 @@ public class ArmaCuerpoACuerpo extends Armas {
                 2 : 0;
     }
 
-    public void setEstiloDeUso(int estiloDeUso) {
-        this.estiloDeUso = estiloDeUso;
-    }
+
 
     @Override
     public String toString() {
