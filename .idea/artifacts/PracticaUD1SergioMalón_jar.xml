@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="ArmeriaMVCSergioMalon:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ArmeriaMVCSergioMalon_jar</output-path>
-    <root id="archive" name="ArmeriaMVCSergioMalon.jar">
+  <artifact type="jar" name="PracticaUD1SergioMalón:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PracticaUD1SergioMalón_jar</output-path>
+    <root id="archive" name="PracticaUD1SergioMalón.jar">
       <element id="module-output" name="PracticaUD1SergioMalón" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-forms-1.8.0.jar" path-in-jar="/" />
