@@ -43,38 +43,50 @@ public class Modelo {
 
     public boolean altaArmaCaC(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
                                String materiales, double precioEnEscudos,
-                               LocalDate fechaFabricacion, String descripcion,
-                               boolean unFilo, double longitudFilo, int estiloDeUso) {
-        ArmaCuerpoACuerpo armaCuerpoACuerpo = new ArmaCuerpoACuerpo(nombre, modelo, lugarDeFabricacion, nombreFabricante,
-                materiales, precioEnEscudos, fechaFabricacion, descripcion, unFilo, longitudFilo, estiloDeUso);
+                               LocalDate fechaFabricacion,
+                               boolean dosFilos, double longitudFilo, String estiloDeUso) {
         if (buscarArma(nombre) == null) {
+            ArmaCuerpoACuerpo armaCuerpoACuerpo = new ArmaCuerpoACuerpo(nombre, modelo, lugarDeFabricacion, nombreFabricante,
+                    materiales, precioEnEscudos, fechaFabricacion, dosFilos, longitudFilo, estiloDeUso);
             listaArmas.add(armaCuerpoACuerpo);
             return true;
+        }
+        if (buscarArma(nombre) == null) {
+
         }
         return false;
     }
 
     public boolean altaArmaADistancia(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
                                       String materiales, double precioEnEscudos,
-                                      LocalDate fechaFabricacion, String descripcion, int municion, double alcanceEfectivo, boolean usaPolvora) {
-        ArmaADistancia armaADistancia = new ArmaADistancia(nombre, modelo, lugarDeFabricacion, nombreFabricante,
-                materiales, precioEnEscudos, fechaFabricacion, descripcion, municion, alcanceEfectivo, usaPolvora);
-
+                                      LocalDate fechaFabricacion, int municion, double alcanceEfectivo, boolean usaPolvora) {
         if (buscarArma(nombre) == null) {
+            ArmaADistancia armaADistancia = new ArmaADistancia(nombre, modelo, lugarDeFabricacion, nombreFabricante,
+                    materiales, precioEnEscudos, fechaFabricacion, municion, alcanceEfectivo, usaPolvora);
             listaArmas.add(armaADistancia);
+            System.out.println("Añadido");
             return true;
         }
+
         return false;
     }
 
+    public boolean borrarArma(String nombre) {
+        for (Armas a : listaArmas) {
+            if (a.getNombre().equalsIgnoreCase(nombre)) {
+                listaArmas.remove(a);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean exportarXML(File fichero) {
         Document dom;
         Element hijo = null;
         Element datoHijo = null;
-        Element datoHijo1 = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
+        System.out.println("ESTAMOS DENTRO DEL METODO PARA EXPORTAR");
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             dom = db.newDocument();
@@ -100,55 +112,52 @@ public class Modelo {
                 hijo.appendChild(datoHijo);
 
                 datoHijo = dom.createElement("lugarFabricacion");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getLugarDeFabricacion())));
                 hijo.appendChild(datoHijo);
 
                 datoHijo = dom.createElement("nombreFabricante");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getNombreFabricante())));
                 hijo.appendChild(datoHijo);
 
                 datoHijo = dom.createElement("material");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getMateriales())));
                 hijo.appendChild(datoHijo);
 
                 datoHijo = dom.createElement("precioEnEscudos");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getPrecioEnEscudos())));
                 hijo.appendChild(datoHijo);
 
                 datoHijo = dom.createElement("fechaFabricacion");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getFechaFabricacion())));
                 hijo.appendChild(datoHijo);
 
-                datoHijo = dom.createElement("descripcion");
-                datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
-                hijo.appendChild(datoHijo);
 
                 if (a instanceof ArmaCuerpoACuerpo) {
                     datoHijo = dom.createElement("numFilos");
-                    datoHijo.appendChild(dom.createTextNode((((ArmaCuerpoACuerpo) a).isUnFilo()) ? "Un solo filo" : "Dos filos"));
+                    datoHijo.appendChild(dom.createTextNode((((ArmaCuerpoACuerpo) a).isDosFilosTexto())));
                     hijo.appendChild(datoHijo);
 
                     datoHijo = dom.createElement("longitudFilo");
-                    datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                    datoHijo.appendChild(dom.createTextNode(String.valueOf(((ArmaCuerpoACuerpo) a).getLongitudFilo())));
                     hijo.appendChild(datoHijo);
 
                     datoHijo = dom.createElement("estiloDeUso");
-                    datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                    datoHijo.appendChild(dom.createTextNode(String.valueOf(((ArmaCuerpoACuerpo) a).getEstiloDeUsoTexto())));
                     hijo.appendChild(datoHijo);
 
 
                 } else if (a instanceof ArmaADistancia) {
 
                     datoHijo = dom.createElement("municion");
-                    datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                    datoHijo.appendChild(dom.createTextNode(String.valueOf(((ArmaADistancia) a).getMunicion())));
                     hijo.appendChild(datoHijo);
 
                     datoHijo = dom.createElement("alcance");
-                    datoHijo.appendChild(dom.createTextNode(String.valueOf(a.getModelo())));
+                    datoHijo.appendChild(dom.createTextNode(String.valueOf(((ArmaADistancia) a).getAlcanceEfectivo())));
                     hijo.appendChild(datoHijo);
 
                     datoHijo = dom.createElement("usaPolvora");
-                    datoHijo.appendChild(dom.createTextNode((((ArmaADistancia) a).isUsaPolvora()) ? "Arma de fuego" : "Arma tradicional"));
+                    datoHijo.appendChild(dom.createTextNode((((ArmaADistancia) a).isUsaPolvoraTexto())));
                     hijo.appendChild(datoHijo);
                 }
             }
@@ -159,7 +168,7 @@ public class Modelo {
 
             // send DOM to file
             tr.transform(new DOMSource(dom),
-                    new StreamResult(new FileOutputStream("productos.xml")));
+                    new StreamResult(new FileOutputStream(fichero)));
             return true;
 
 
@@ -189,33 +198,31 @@ public class Modelo {
                 if (nodoArma.getTagName().equals("ArmaCuerpoACuerpo")) {
 
                     armaCuerpoACuerpo = new ArmaCuerpoACuerpo();
-                    armaCuerpoACuerpo.setNombre(nodoArma.getChildNodes().item(0).getTextContent());
-                    armaCuerpoACuerpo.setModelo(nodoArma.getChildNodes().item(1).getTextContent());
-                    armaCuerpoACuerpo.setLugarDeFabricacion(nodoArma.getChildNodes().item(2).getTextContent());
-                    armaCuerpoACuerpo.setNombreFabricante(nodoArma.getChildNodes().item(3).getTextContent());
-                    armaCuerpoACuerpo.setMateriales(nodoArma.getChildNodes().item(4).getTextContent());
-                    armaCuerpoACuerpo.setPrecioEnEscudos(Double.parseDouble(nodoArma.getChildNodes().item(5).getTextContent()));
-                    armaCuerpoACuerpo.setFechaFabricacion(LocalDate.parse(nodoArma.getChildNodes().item(6).getTextContent()));
-                    armaCuerpoACuerpo.setDescripcion(nodoArma.getChildNodes().item(7).getTextContent());
-                    armaCuerpoACuerpo.setUnFilo(nodoArma.getChildNodes().item(8).getTextContent());
-                    armaCuerpoACuerpo.setLongitudFilo(Integer.parseInt(nodoArma.getChildNodes().item(9).getTextContent()));
-                    armaCuerpoACuerpo.setEstiloDeUso(Integer.parseInt(nodoArma.getChildNodes().item(10).getTextContent()));
+                    armaCuerpoACuerpo.setNombre(nodoArma.getChildNodes().item(1).getTextContent());
+                    armaCuerpoACuerpo.setModelo(nodoArma.getChildNodes().item(3).getTextContent());
+                    armaCuerpoACuerpo.setLugarDeFabricacion(nodoArma.getChildNodes().item(5).getTextContent());
+                    armaCuerpoACuerpo.setNombreFabricante(nodoArma.getChildNodes().item(7).getTextContent());
+                    armaCuerpoACuerpo.setMateriales(nodoArma.getChildNodes().item(9).getTextContent());
+                    armaCuerpoACuerpo.setPrecioEnEscudos(Double.parseDouble(nodoArma.getChildNodes().item(11).getTextContent()));
+                    armaCuerpoACuerpo.setFechaFabricacion(LocalDate.parse(nodoArma.getChildNodes().item(13).getTextContent()));
+                    armaCuerpoACuerpo.setDosFilosTexto(nodoArma.getChildNodes().item(15).getTextContent());
+                    armaCuerpoACuerpo.setLongitudFilo(Double.parseDouble(nodoArma.getChildNodes().item(17).getTextContent()));
+                    armaCuerpoACuerpo.setEstiloDeUso(nodoArma.getChildNodes().item(19).getTextContent());
 
                     listaArmas.add(armaCuerpoACuerpo);
                 } else if (nodoArma.getTagName().equals("ArmaADistancia")) {
                     armaADistancia = new ArmaADistancia();
 
-                    armaADistancia.setNombre(nodoArma.getChildNodes().item(0).getTextContent());
-                    armaADistancia.setModelo(nodoArma.getChildNodes().item(1).getTextContent());
-                    armaADistancia.setLugarDeFabricacion(nodoArma.getChildNodes().item(2).getTextContent());
-                    armaADistancia.setNombreFabricante(nodoArma.getChildNodes().item(3).getTextContent());
-                    armaADistancia.setMateriales(nodoArma.getChildNodes().item(4).getTextContent());
-                    armaADistancia.setPrecioEnEscudos(Double.parseDouble(nodoArma.getChildNodes().item(5).getTextContent()));
-                    armaADistancia.setFechaFabricacion(LocalDate.parse(nodoArma.getChildNodes().item(6).getTextContent()));
-                    armaADistancia.setDescripcion(nodoArma.getChildNodes().item(7).getTextContent());
-                    armaADistancia.setMunicion(Integer.parseInt(nodoArma.getChildNodes().item(8).getTextContent()));
-                    armaADistancia.setAlcanceEfectivo(Double.parseDouble(nodoArma.getChildNodes().item(9).getTextContent()));
-                    armaADistancia.setUsaPolvora(nodoArma.getChildNodes().item(10).getTextContent());
+                    armaADistancia.setNombre(nodoArma.getChildNodes().item(1).getTextContent());
+                    armaADistancia.setModelo(nodoArma.getChildNodes().item(3).getTextContent());
+                    armaADistancia.setLugarDeFabricacion(nodoArma.getChildNodes().item(5).getTextContent());
+                    armaADistancia.setNombreFabricante(nodoArma.getChildNodes().item(7).getTextContent());
+                    armaADistancia.setMateriales(nodoArma.getChildNodes().item(9).getTextContent());
+                    armaADistancia.setPrecioEnEscudos(Double.parseDouble(nodoArma.getChildNodes().item(11).getTextContent()));
+                    armaADistancia.setFechaFabricacion(LocalDate.parse(nodoArma.getChildNodes().item(13).getTextContent()));
+                    armaADistancia.setMunicion(Integer.parseInt(nodoArma.getChildNodes().item(15).getTextContent()));
+                    armaADistancia.setAlcanceEfectivo(Double.parseDouble(nodoArma.getChildNodes().item(17).getTextContent()));
+                    armaADistancia.setUsaPolvora(nodoArma.getChildNodes().item(19).getTextContent());
 
                     listaArmas.add(armaADistancia);
                 }

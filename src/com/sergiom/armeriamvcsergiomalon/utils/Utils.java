@@ -10,8 +10,8 @@ public class Utils {
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public static void mensajeConfirmacion(String mensaje, String titulo) {
-        JOptionPane.showConfirmDialog(null, mensaje, titulo, JOptionPane.YES_NO_OPTION);
+    public static int mensajeConfirmacion(String mensaje, String titulo) {
+        return JOptionPane.showConfirmDialog(null, mensaje, titulo, JOptionPane.YES_NO_OPTION);
     }
 
     public static JFileChooser crearSelectorFichero(File ruta, String tipoArchivo, String extension) {
@@ -20,7 +20,7 @@ public class Utils {
             selectorArchivo.setCurrentDirectory(ruta);
         }
         if (extension != null && tipoArchivo != null) {
-            FileNameExtensionFilter filtro = new FileNameExtensionFilter(tipoArchivo, extension);
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter(tipoArchivo, extension.toLowerCase());
             selectorArchivo.setFileFilter(filtro);
         }
         return selectorArchivo;

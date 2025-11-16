@@ -3,8 +3,8 @@ package com.sergiom.armeriamvcsergiomalon.base;
 import java.time.LocalDate;
 
 public class ArmaADistancia extends Armas {
-    private static final String[] modelosTradicionales = { "Ballesta", "Onagro","Arco","Honda"};
-    private static final String[] modelosPolvora = {"Arcabuz" ,"Bombarda","Mosquete","Culebrina"};
+    public static final String[] modelosTradicionales = {"Ballesta", "Onagro", "Arco", "Honda"};
+    public static final String[] modelosPolvora = {"Arcabuz", "Bombarda", "Mosquete", "Culebrina"};
 
     int municion;
     double alcanceEfectivo;
@@ -14,9 +14,9 @@ public class ArmaADistancia extends Armas {
     }
 
     public ArmaADistancia(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
-                          String materiales, double precioEnEscudos, LocalDate fechaFabricacion, String descripcion,
+                          String materiales, double precioEnEscudos, LocalDate fechaFabricacion,
                           int municion, double alcanceEfectivo, boolean usaPolvora) {
-        super(nombre, modelo, lugarDeFabricacion, nombreFabricante, materiales, precioEnEscudos, fechaFabricacion, descripcion);
+        super(nombre, modelo, lugarDeFabricacion, nombreFabricante, materiales, precioEnEscudos, fechaFabricacion);
         this.municion = municion;
         this.alcanceEfectivo = alcanceEfectivo;
         this.usaPolvora = usaPolvora;
@@ -42,9 +42,13 @@ public class ArmaADistancia extends Armas {
         return usaPolvora;
     }
 
-    public boolean isUsaPolvora(String modelo){
-        for(int i = 0; i< modelosPolvora.length;i++){
-            if(modelosPolvora[i].equalsIgnoreCase(modelo)){
+    public String isUsaPolvoraTexto() {
+        return usaPolvora ? "Si" : "No";
+    }
+
+    public boolean isUsaPolvora(String modelo) {
+        for (int i = 0; i < modelosPolvora.length; i++) {
+            if (modelosPolvora[i].equalsIgnoreCase(modelo)) {
                 return true;
             }
         }
@@ -68,10 +72,9 @@ public class ArmaADistancia extends Armas {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append(this.usaPolvora ? "Es un arma de fuego" : "Es un arma tradicional");
+        sb.append(", Usa pólvora: " + isUsaPolvoraTexto());
         sb.append(", Alcance efectivo del proyectil: " + this.alcanceEfectivo);
-        sb.append(", Numero de proyectiles en carcaj o bolsa: " + this.municion);
-        sb.append(", Comentarios: " + super.getDescripcion());
+        sb.append(", Numero de proyectiles: " + this.municion);
 
         return sb.toString();
     }

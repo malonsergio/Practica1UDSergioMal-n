@@ -137,15 +137,6 @@
           <text value="Fecha de fabricación"/>
         </properties>
       </component>
-      <component id="efe9d" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms top="0" left="5" bottom="0" right="0"/>
-        </constraints>
-        <properties>
-          <text value="Descripción/Comentarios"/>
-        </properties>
-      </component>
       <component id="a5b9c" class="javax.swing.JTextField" binding="textFieldNombre">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -216,7 +207,7 @@
           <text value="Alcance efectivo"/>
         </properties>
       </component>
-      <component id="e5cd8" class="javax.swing.JLabel" binding="usaPolvoraUnFilo">
+      <component id="e5cd8" class="javax.swing.JLabel" binding="usaPolvoraDosFilos">
         <constraints>
           <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <forms top="0" left="5" bottom="0" right="0"/>
@@ -243,7 +234,7 @@
       </component>
       <scrollpane id="7d317">
         <constraints>
-          <grid row="25" column="2" row-span="10" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="22" column="2" row-span="5" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
@@ -255,15 +246,6 @@
           </component>
         </children>
       </scrollpane>
-      <component id="fb870" class="javax.swing.JTextField" binding="municionEstiloTxt">
-        <constraints>
-          <grid row="16" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <forms defaultalign-horz="false"/>
-        </constraints>
-        <properties/>
-      </component>
       <component id="31218" class="javax.swing.JTextField" binding="longAlcanceTxt">
         <constraints>
           <grid row="18" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -275,7 +257,7 @@
       </component>
       <component id="4f88c" class="javax.swing.JButton" binding="nuevoBtn">
         <constraints>
-          <grid row="24" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
@@ -291,14 +273,28 @@
           <text value="Borrar"/>
         </properties>
       </component>
-      <component id="dbe19" class="javax.swing.JTextArea" binding="descripcionTxt">
+      <grid id="2020f" binding="panelMunEst" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="22" column="2" row-span="3" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+          <grid row="16" column="2" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
         </constraints>
         <properties/>
+        <border type="none"/>
+        <children>
+          <component id="2a6ec" class="javax.swing.JTextField" binding="municionTxt">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <component id="2fba2" class="javax.swing.JButton" binding="sobreescribirTxt">
+        <constraints>
+          <grid row="24" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Sobreescribir"/>
+        </properties>
       </component>
     </children>
   </grid>

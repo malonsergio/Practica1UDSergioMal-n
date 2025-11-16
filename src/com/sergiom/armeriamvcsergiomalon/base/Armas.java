@@ -6,19 +6,18 @@ public class Armas {
 
 
     private String nombre;
-    private String modelo;
+     String modelo;
     private String lugarDeFabricacion;
     private String nombreFabricante;
     private String materiales;
     private double precioEnEscudos;
     private LocalDate fechaFabricacion;
-    private String descripcion;
 
     public Armas() {
     }
 
     public Armas(String nombre, String modelo, String lugarDeFabricacion, String nombreFabricante,
-                 String materiales, double precioEnEscudos, LocalDate fechaFabricacion, String descripcion) {
+                 String materiales, double precioEnEscudos, LocalDate fechaFabricacion) {
         this.nombre = nombre;
         this.modelo = modelo;
         this.lugarDeFabricacion = lugarDeFabricacion;
@@ -26,16 +25,8 @@ public class Armas {
         this.materiales = materiales;
         this.precioEnEscudos = precioEnEscudos;
         this.fechaFabricacion = fechaFabricacion;
-        this.descripcion = descripcion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
 
     public String getNombre() {
@@ -99,11 +90,11 @@ public class Armas {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre del arma: " + this.nombre);
         sb.append(", Modelo del arma: " + this.modelo);
-        sb.append(", Fabricada en " + this.lugarDeFabricacion);
-        sb.append(" por " + this.nombreFabricante);
+        sb.append(", Lugar de Fabricación: " + this.lugarDeFabricacion);
+        sb.append(" Fabricante:  " + this.nombreFabricante);
         sb.append(", Materiales usados:  " + this.materiales);
-        sb.append(" a fecha de: " + this.fechaFabricacion);
-        sb.append(", precio total en escudos de oro: " + this.precioEnEscudos);
+        sb.append(" Fecha: " + this.fechaFabricacion);
+        sb.append(", Precio en escudos de oro: " + this.precioEnEscudos);
         return sb.toString();
 
     }
